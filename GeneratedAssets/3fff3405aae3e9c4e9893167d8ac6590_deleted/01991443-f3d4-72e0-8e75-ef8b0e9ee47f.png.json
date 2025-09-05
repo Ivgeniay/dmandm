@@ -1,0 +1,29 @@
+{
+    "asset": "3fff3405aae3e9c4e9893167d8ac6590",
+    "fileName": "01991443-f3d4-72e0-8e75-ef8b0e9ee47f.png",
+    "prompt": "2D персонаж в стиле Doom, стоящий и смотрящий в нашу сторону, красная шляпа,  стиль Doom, соблюдай палитру исходника, ",
+    "negativePrompt": "Задний фон, не нужные детали не относящиеся к персонажу",
+    "model": "242b56c1-2224-41c4-8949-2ba760bbfc69",
+    "modelName": "16-bit Pixel",
+    "customSeed": -1,
+    "w3CTraceId": "8af87e27afe08ce0d284a3110d37e655",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 8,
+                "doodle": [],
+                "label": "Style",
+                "strength": 0.9800000190734863,
+                "invertStrength": false,
+                "assetReferenceGuid": "c30205bb0064f7448adbea8e10ba4f34"
+            }
+        ]
+    },
+    "upscaleFactor": 0
+}
