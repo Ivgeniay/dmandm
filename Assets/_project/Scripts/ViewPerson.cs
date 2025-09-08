@@ -1,27 +1,21 @@
+using DMM.Cameras;
 using UnityEngine;
 
 public class ViewPerson : MonoBehaviour
 {
-    [SerializeField] private Camera _camera;
     [SerializeField] private Transform _transformView;
     [SerializeField] private SpriteRenderer[] m_View;
     [SerializeField] private SpriteRenderer _currentSprite;
     [SerializeField] private int lineLength = 3;
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {
         UseCase();
     }
 
-
     void OnDrawGizmos()
     {
-        Gizmos.DrawLine(_camera.transform.position, _camera.transform.position + (_camera.transform.forward * lineLength));
+        Gizmos.DrawLine(MainCamera.Main.transform.position, MainCamera.Main.transform.position + (MainCamera.Main.transform.forward * lineLength));
         Gizmos.DrawLine(_transformView.position, _transformView.position + (_transformView.forward * lineLength));
     }
 
@@ -38,8 +32,8 @@ public class ViewPerson : MonoBehaviour
 
     private float GetSignedAngleBetweenCameraAndTransform()
     {
-        Vector3 cameraForward = _camera.transform.forward;
-        Vector3 directionToTransform = (_transformView.position - _camera.transform.position).normalized;
+        Vector3 cameraForward = MainCamera.Main.transform.forward;
+        Vector3 directionToTransform = (_transformView.position - MainCamera.Main.transform.position).normalized;
 
         float angle = Vector3.Angle(cameraForward, directionToTransform);
 
@@ -53,7 +47,7 @@ public class ViewPerson : MonoBehaviour
     private float GetObjectViewAngleRelativeToCamera()
     {
         Vector3 objectForward = _transformView.forward;
-        Vector3 directionToCamera = (_camera.transform.position - _transformView.position).normalized;
+        Vector3 directionToCamera = (MainCamera.Main.transform.position - _transformView.position).normalized;
 
         float angle = Vector3.Angle(objectForward, directionToCamera);
 
@@ -85,22 +79,19 @@ public class ViewPerson : MonoBehaviour
 
     private void LookAtCamera()
     {
-        if (_currentSprite == null || _camera == null)
+        if (_currentSprite == null || MainCamera.Main == null)
             return;
 
-        Vector3 directionToCamera = _camera.transform.position - _currentSprite.transform.position;
+        Vector3 directionToCamera = MainCamera.Main.transform.position - _currentSprite.transform.position;
         directionToCamera.y = 0f;
 
         if (directionToCamera != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToCamera);
-            Debug.Log("Rotating object: " + _currentSprite.name);
-            Debug.Log("Before rotation: " + _currentSprite.transform.rotation.eulerAngles);
+            //Debug.Log("Rotating object: " + _currentSprite.name);
+            //Debug.Log("Before rotation: " + _currentSprite.transform.rotation.eulerAngles);
             _currentSprite.transform.rotation = targetRotation;
-            Debug.Log("After rotation: " + _currentSprite.transform.rotation.eulerAngles);
-            //_currentSprite.transform.rotation = targetRotation;
-            //_currentSprite.transform.hasChanged = true;
-            //Debug.Log("LookAtCamera: " + targetRotation.eulerAngles);
+            //Debug.Log("After rotation: " + _currentSprite.transform.rotation.eulerAngles);
         }
     }
 }
